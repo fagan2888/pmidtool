@@ -1,5 +1,5 @@
 import flask
-from flask import Flask, request
+from flask import Flask, request, redirect
 from wikidataintegrator import wdi_login
 from wikidataintegrator.wdi_helpers import PubmedItem
 
@@ -16,6 +16,11 @@ def batch():
         p = PubmedItem(pmid)
         d[pmid] = p.get_or_create(login)
     return flask.jsonify({'success': True, 'result': d})
+
+
+@app.route('/')
+def home():
+    return "See <a href='https://www.wikidata.org/wiki/Wikidata:WikiProject_Source_MetaData/PMIDTool'>here</a> for more info"
 
 
 @app.route('/get_or_create')
