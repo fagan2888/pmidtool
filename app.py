@@ -10,7 +10,10 @@ app = Flask(__name__)
 
 
 def batch():
-    pmids = request.args.get('pmids', '')
+    pmids = request.args.get('pmids', None)
+    if pmids is None:
+        print("No pmids given!")
+        return flask.jsonify({'success': False})
     d = {}
     for pmid in pmids.split(","):
         p = PubmedItem(pmid)
@@ -26,7 +29,7 @@ def home():
 @app.route('/get_or_create')
 @app.route('/get_or_create/<pmid>')
 def get_or_create(pmid=None):
-    if pmid == None:
+    if pmid is None:
         return batch()
     else:
         p = PubmedItem(pmid)
