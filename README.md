@@ -4,3 +4,5 @@ Allow you to create or retrieve a wikidata item that represents a scientific jou
 
 Usage:
 http://localhost:8000/get_or_create?pmid=1234
+
+https://www.wikidata.org/wiki/Wikidata:WikiProject_Source_MetaData/PMIDTool
